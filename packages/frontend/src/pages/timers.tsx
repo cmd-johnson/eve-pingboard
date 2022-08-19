@@ -1,4 +1,5 @@
 import { ApiEventEntry, ApiEventEntryInput, UserRoles } from '@ping-board/common'
+import dayjs from 'dayjs'
 import { useEffect, useState } from 'react'
 import { Button, Container } from 'react-bootstrap'
 import { Navigate, useMatch } from 'react-router-dom'
@@ -23,6 +24,14 @@ export function TimersPage(): JSX.Element {
   const canRead = me.data?.isLoggedIn && me.data.character.roles.includes(UserRoles.EVENTS_READ)
 
   const eventsList = useEventsList({ skip: me.isLoading || !canRead })
+  const upcomingThreshold = Date.now() + 1000 * 60 * 60
+  const pastThreshold = Date.now() - 1000 * 60 * 60
+  const upcomingEvents = eventsList.events.filter(e => dayjs(e.time).valueOf() > upcomingThreshold)
+  const pastEvents = eventsList.events.filter(e => dayjs(e.time).valueOf() < pastThreshold)
+  const activeEvents = eventsList.events.filter(e => {
+    const t = dayjs(e.time).valueOf()
+    return t <= upcomingThreshold && t >= pastThreshold
+  })
 
   const [addEvent, addEventState] = useAddEventMutation()
   const [updateEvent, updateEventState] = useUpdateEventMutation()
@@ -103,12 +112,38 @@ export function TimersPage(): JSX.Element {
         }
       </div>
 
-      <EventsTable
-        events={eventsList.events}
-        showResultColumn
-        canEdit={canEdit}
-        onEdit={editEvent}
-      />
+      {upcomingEvents.length > 0 && (<>
+        <h4>Upcoming</h4>
+
+        <EventsTable
+          events={upcomingEvents}
+          showResultColumn
+          canEdit={canEdit}
+          onEdit={editEvent}
+        />
+      </>)}
+
+      {activeEvents.length > 0 && (<>
+        <h4>Active</h4>
+
+        <EventsTable
+          events={activeEvents}
+          showResultColumn
+          canEdit={canEdit}
+          onEdit={editEvent}
+        />
+      </>)}
+
+      {pastEvents.length > 0 && (<>
+        <h4>Past</h4>
+
+        <EventsTable
+          events={pastEvents}
+          showResultColumn
+          canEdit={canEdit}
+          onEdit={editEvent}
+        />
+      </>)}
 
       <Button
         className="w-100 mb-3"
