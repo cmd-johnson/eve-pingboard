@@ -41,6 +41,39 @@ $red-700: shade-color($red, 40%);
 $red-800: shade-color($red, 60%);
 $red-900: shade-color($red, 80%);
 
+$yellow: #ffeb3b;
+$yellow-100: tint-color($yellow, 80%);
+$yellow-200: tint-color($yellow, 60%);
+$yellow-300: tint-color($yellow, 40%);
+$yellow-400: tint-color($yellow, 20%);
+$yellow-500: $yellow;
+$yellow-600: shade-color($yellow, 20%);
+$yellow-700: shade-color($yellow, 40%);
+$yellow-800: shade-color($yellow, 60%);
+$yellow-900: shade-color($yellow, 80%);
+
+$amber: #ffc107;
+$amber-100: tint-color($amber, 80%);
+$amber-200: tint-color($amber, 60%);
+$amber-300: tint-color($amber, 40%);
+$amber-400: tint-color($amber, 20%);
+$amber-500: $amber;
+$amber-600: shade-color($amber, 20%);
+$amber-700: shade-color($amber, 40%);
+$amber-800: shade-color($amber, 60%);
+$amber-900: shade-color($amber, 80%);
+
+$orange: #ff9800;
+$orange-100: tint-color($orange, 80%);
+$orange-200: tint-color($orange, 60%);
+$orange-300: tint-color($orange, 40%);
+$orange-400: tint-color($orange, 20%);
+$orange-500: $orange;
+$orange-600: shade-color($orange, 20%);
+$orange-700: shade-color($orange, 40%);
+$orange-800: shade-color($orange, 60%);
+$orange-900: shade-color($orange, 80%);
+
 $body-bg: $gray-800;
 $success: $green-300;
 $body-color: #ffffff;
