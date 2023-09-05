@@ -16,8 +16,8 @@ export interface CalendarEntry {
   dateTime: string
   color?: typeof eventColors[number]
   baseEntry:
-    | { type: 'event', event: ApiEventEntry }
-    | { type: 'ping', ping: ApiScheduledPing }
+  | { type: 'event', event: ApiEventEntry }
+  | { type: 'ping', ping: ApiScheduledPing }
 }
 
 interface CalendarState {
@@ -49,7 +49,7 @@ export function getDisplayedMonthRange(date: { year: number, month: number }): {
 } {
   const firstOfMonth = dayjsFromYearAndMonth(date)
   const startOfMonthPadding = modulo(firstOfMonth.day() - dayjs.localeData().firstDayOfWeek(), 7)
-  const from = firstOfMonth.subtract(dayjs.duration({ days: startOfMonthPadding }))
+  const from = firstOfMonth.subtract(startOfMonthPadding, 'days')
   const displayedWeeks = Math.ceil((from.daysInMonth() + startOfMonthPadding) / 7)
   const to = from.add(dayjs.duration({ weeks: displayedWeeks }))
   return { from, to, displayedWeeks }
@@ -163,9 +163,9 @@ export const calendarSlice = createSlice({
       const updated = action.payload
       state.events = state.events.map(e =>
         e.baseEntry.type === 'event' &&
-        e.baseEntry.event.id === updated.id
-        ? calendarEntryFromEvent(updated)
-        : e
+          e.baseEntry.event.id === updated.id
+          ? calendarEntryFromEvent(updated)
+          : e
       )
     })
     // Remove calendar entries for every removed event
@@ -181,7 +181,7 @@ export const calendarSlice = createSlice({
         state.events = [...state.events, calendarEntryFromPing(action.payload)]
       }
     })
-    ,
+  ,
 })
 
 function calendarEntryFromEvent(event: ApiEventEntry): CalendarEntry {

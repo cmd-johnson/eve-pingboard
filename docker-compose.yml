@@ -39,7 +39,7 @@ services:
       CORE_APP_ID:
       CORE_APP_TOKEN:
       GROUPS_READ_EVENTS:
-      GROUPS_WRITE_EVENTS:
+      GROUPS_EDIT_EVENTS:
     labels:
       traefik.enable: "true"
       traefik.http.routers.pingboard-backend.entrypoints: web
@@ -55,3 +55,25 @@ services:
       MARIADB_DATABASE: "pingboard"
       MARIADB_USER: "pingboard"
       MARIADB_PASSWORD: "pingboard"
+
+  neucore-db:
+    image: mariadb:10.6.4-focal
+    environment:
+      MARIADB_ROOT_PASSWORD: "neucore"
+      MARIADB_DATABASE: "neucore"
+      MARIADB_USER: "neucore"
+      MARIADB_PASSWORD: "neucore"
+
+  neucore:
+    image: tkhamez/neucore:2.2.1
+    ports:
+      - "8080:80"
+    environment:
+      NEUCORE_APP_ENV: prod
+      NEUCORE_DATABASE_URL: "mysql://neucore:neucore@neucore-db/neucore"
+      NEUCORE_EVE_CALLBACK_URL: "http://localhost:8080/login-callback"
+      NEUCORE_EVE_CLIENT_ID:
+      NEUCORE_EVE_SECRET_KEY:
+      NEUCORE_EVE_SCOPES: "esi-calendar.read_calendar_events.v1 esi-location.read_location.v1 esi-location.read_ship_type.v1 esi-mail.read_mail.v1 esi-skills.read_skills.v1 esi-skills.read_skillqueue.v1 esi-wallet.read_character_wallet.v1 esi-search.search_structures.v1 esi-clones.read_clones.v1 esi-characters.read_contacts.v1 esi-universe.read_structures.v1 esi-bookmarks.read_character_bookmarks.v1 esi-killmails.read_killmails.v1 esi-corporations.read_corporation_membership.v1 esi-assets.read_assets.v1 esi-fleets.read_fleet.v1 esi-fittings.read_fittings.v1 esi-markets.structure_markets.v1 esi-characters.read_loyalty.v1 esi-characters.read_opportunities.v1 esi-characters.read_chat_channels.v1 esi-characters.read_medals.v1 esi-characters.read_standings.v1 esi-characters.read_agents_research.v1 esi-industry.read_character_jobs.v1 esi-markets.read_character_orders.v1 esi-characters.read_blueprints.v1 esi-characters.read_corporation_roles.v1 esi-location.read_online.v1 esi-contracts.read_character_contracts.v1 esi-clones.read_implants.v1 esi-characters.read_fatigue.v1 esi-characters.read_notifications.v1 esi-industry.read_character_mining.v1 esi-characters.read_titles.v1 esi-characters.read_fw_stats.v1 esi-characterstats.read.v1"
+      NEUCORE_SESSION_SECURE: "0"
+    working_dir: "/var/www/backend"

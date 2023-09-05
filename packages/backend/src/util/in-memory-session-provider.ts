@@ -1,4 +1,4 @@
-import * as uuid from 'uuid'
+import crypto from 'node:crypto'
 import { Session, SessionProvider } from '../middleware/session'
 import { createIntervalScheduler } from './create-interval-scheduler'
 
@@ -7,7 +7,7 @@ export class InMemorySessionProvider implements SessionProvider {
   private readonly cleanupScheduler = createIntervalScheduler(() => this.cleanup())
 
   async createSession(data: Omit<Session, 'id'>): Promise<Readonly<Session>> {
-    const id = uuid.v4()
+    const id = crypto.randomUUID()
     const session = { id, ...data }
     this.sessionStore.set(id, session)
     return session

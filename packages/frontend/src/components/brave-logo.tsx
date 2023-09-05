@@ -1,4 +1,4 @@
-import logo from './brave-logo.svg'
+import logo from '!file-loader!./brave-logo.svg'
 
 export interface BraveLogoProps {
   width?: string | number

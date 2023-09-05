@@ -1,5 +1,5 @@
 import ClientOAuth2 from 'client-oauth2'
-import * as uuid from 'uuid'
+import crypto from 'node:crypto'
 import { EveJWT, parseEveJWT } from './eve-jwt'
 import type { ParsedUrlQuery } from 'querystring'
 import { BadRequest } from 'http-errors'
@@ -84,7 +84,7 @@ export class EveSSOClient {
    * @param sessionId the sessionId to associate the login with
    */
   async getLoginUrl(sessionId: string): Promise<string> {
-    const state = uuid.v4()
+    const state = crypto.randomUUID()
     const redirectUri = await this.client.code.getUri({ state })
     this.loginStates.set(state, {
       sessionId,

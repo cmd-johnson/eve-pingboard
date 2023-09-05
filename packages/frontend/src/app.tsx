@@ -3,7 +3,7 @@ import { BrowserRouter, Navigate, Outlet, Route, Routes, useLocation } from 'rea
 import { UserRoles } from '@ping-board/common'
 import { useGetUserQuery } from './store'
 import { AppNav } from './components/app-nav'
-import { AppFooter } from './components/app-footer'
+// import { AppFooter } from './components/app-footer'
 
 import { CalendarPage } from './pages/calendar'
 import { TimersPage } from './pages/timers'
@@ -97,9 +97,9 @@ function Layout(): JSX.Element {
       <main className="main">
         <Outlet />
       </main>
-      <footer>
+      {/* <footer>
         <AppFooter />
-      </footer>
+      </footer> */}
     </div>
   )
 }
