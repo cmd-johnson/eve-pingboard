@@ -4636,23 +4636,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/koa@npm:*":
-  version: 2.13.4
-  resolution: "@types/koa@npm:2.13.4"
-  dependencies:
-    "@types/accepts": "*"
-    "@types/content-disposition": "*"
-    "@types/cookies": "*"
-    "@types/http-assert": "*"
-    "@types/http-errors": "*"
-    "@types/keygrip": "*"
-    "@types/koa-compose": "*"
-    "@types/node": "*"
-  checksum: 35a54e68944f74d6763537d55d01f8ed870d0ef816b5f27fce97a317b237540b7c249dc4a54abab44ad0afd0ce010b335122c9efb490b9589affe7929201d707
-  languageName: node
-  linkType: hard
-
-"@types/koa@npm:^2.13.8":
+"@types/koa@npm:*, @types/koa@npm:^2.13.8":
   version: 2.13.8
   resolution: "@types/koa@npm:2.13.8"
   dependencies:
