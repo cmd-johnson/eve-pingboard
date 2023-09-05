@@ -52,12 +52,16 @@ export class NeucoreClient {
   /** Performs a GET request to Neucore */
   private async get<T>(path: string): Promise<T> {
     let response: Response
+    const url = `${this.baseUrl}${path}`
     try {
-      response = await fetch(`${this.baseUrl}${path}`, {
+      response = await fetch(url, {
         headers: this.authHeaders,
       })
     } catch (error) {
-      throw new NeucoreError('Request failed', error)
+      throw new NeucoreError(
+        `Request failed (GET ${url})`,
+        error instanceof Error ? error : new Error(String(error))
+      )
     }
     if (response.status < 400) {
       try {
@@ -67,7 +71,7 @@ export class NeucoreClient {
           'Failed to parse response',
           path,
           response,
-          error
+          error instanceof Error ? error : new Error(String(error))
         )
       }
     }
