@@ -38,7 +38,7 @@ export function parseEveJWT(token: string, clientId: string): EveJWT {
     typeof parsed.owner !== 'string' ||
     typeof parsed.exp !== 'number' ||
     parsed.azp !== clientId ||
-    parsed.iss !== 'login.eveonline.com'
+    parsed.iss !== 'https://login.eveonline.com'
   ) {
     throw new Error('invalid Eve JWT')
   }
