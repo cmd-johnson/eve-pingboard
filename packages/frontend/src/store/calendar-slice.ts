@@ -51,7 +51,7 @@ export function getDisplayedMonthRange(date: { year: number, month: number }): {
   const startOfMonthPadding = modulo(firstOfMonth.day() - dayjs.localeData().firstDayOfWeek(), 7)
   const from = firstOfMonth.subtract(startOfMonthPadding, 'days')
   const displayedWeeks = Math.ceil((from.daysInMonth() + startOfMonthPadding) / 7)
-  const to = from.add(dayjs.duration({ weeks: displayedWeeks }))
+  const to = from.add(displayedWeeks, 'weeks')
   return { from, to, displayedWeeks }
 }
 

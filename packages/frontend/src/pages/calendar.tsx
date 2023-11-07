@@ -26,10 +26,8 @@ export function CalendarPage(): JSX.Element {
   }, [dispatch, month, year])
 
   const handleTodayClicked = () => setCurrentMonth(dayjs.utc())
-  const handleNextMonthClicked = () =>
-    setCurrentMonth(m => m.add(dayjs.duration({ months: 1 })))
-  const handlePrevMonthClicked = () =>
-    setCurrentMonth(m => m.subtract(dayjs.duration({ months: 1 })))
+  const handleNextMonthClicked = () => setCurrentMonth(m => m.add(1, 'month'))
+  const handlePrevMonthClicked = () => setCurrentMonth(m => m.subtract(1, 'month'))
   const handleReloadClicked = () => {
     dispatch(clearCalendarEntries())
     dispatch(loadMonth({ month, year }))
