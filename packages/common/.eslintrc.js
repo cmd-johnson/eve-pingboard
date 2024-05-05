@@ -7,6 +7,7 @@ module.exports = {
     '../../.eslintrc.json',
   ],
   ignorePatterns: [
+    'build',
     '.eslintrc.js',
   ],
 }
