@@ -35,11 +35,14 @@ services:
       SSO_CLIENT_SECRET:
       SSO_REDIRECT_URI: "http://localhost:3000/auth/callback"
       SLACK_TOKEN:
-      CORE_URL:
+      CORE_URL: "http://neucore/api"
       CORE_APP_ID:
       CORE_APP_TOKEN:
+      GROUPS_PING:
       GROUPS_READ_EVENTS:
+      GROUPS_ADD_EVENTS:
       GROUPS_EDIT_EVENTS:
+      GROUPS_WRITE_PING_TEMPLATES:
     labels:
       traefik.enable: "true"
       traefik.http.routers.pingboard-backend.entrypoints: web
