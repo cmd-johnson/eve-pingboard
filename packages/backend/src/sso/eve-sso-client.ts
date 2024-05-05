@@ -13,6 +13,11 @@ export interface EveSSOClientConfig {
   /** The Callback URL configured on https://developers.eveonline.com/ */
   redirectUri: string
 
+  /** The Eve OAuth2 Token URI */
+  accessTokenUri?: string,
+  /** The Eve OAuth2 Authorization URI */
+  authorizationUri?: string,
+
   /**
    * Time in seconds after which OAuth2 login states expire.
    * Defaults to 5 minutes.
@@ -45,8 +50,8 @@ export class EveSSOClient {
       clientId: options.clientId,
       clientSecret: options.clientSecret,
       redirectUri: options.redirectUri,
-      accessTokenUri: 'https://login.eveonline.com/v2/oauth/token',
-      authorizationUri: 'https://login.eveonline.com/v2/oauth/authorize/',
+      accessTokenUri: options.accessTokenUri ?? 'https://login.eveonline.com/v2/oauth/token',
+      authorizationUri: options.authorizationUri ?? 'https://login.eveonline.com/v2/oauth/authorize',
     })
 
     this.stateTimeout = options.stateTimeout ?? 300

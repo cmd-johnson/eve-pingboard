@@ -20,7 +20,7 @@ services:
       MARIADB_PASSWORD: "neucore"
 
   neucore:
-    image: tkhamez/neucore:2.2.1
+    image: tkhamez/neucore:2.4.0
     ports:
       - "8080:80"
     environment:

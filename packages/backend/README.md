@@ -78,6 +78,11 @@ SSO_CLIENT_SECRET
 # if you mount the application behind a reverse proxy and under a subpath, it
 # may also be something like https://example.com/pingboard/auth/callback.
 SSO_REDIRECT_URI
+
+# The Eve OAuth2 Token URI (defaults to https://login.eveonline.com/v2/oauth/token)
+#SSO_TOKEN_URI
+# The Eve OAuth2 Authorization URI (defaults to https://login.eveonline.com/v2/oauth/authorize/)
+#SSO_AUTHORIZATION_URI
 ```
 
 ### Slack configuration

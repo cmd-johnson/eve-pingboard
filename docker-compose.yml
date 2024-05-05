@@ -34,6 +34,8 @@ services:
       SSO_CLIENT_ID:
       SSO_CLIENT_SECRET:
       SSO_REDIRECT_URI: "http://localhost:3000/auth/callback"
+      SSO_TOKEN_URI: "https://login.eveonline.com/v2/oauth/token"
+      SSO_AUTHORIZATION_URI: "https://login.eveonline.com/v2/oauth/authorize"
       SLACK_TOKEN:
       CORE_URL: "http://neucore/api"
       CORE_APP_ID:
@@ -68,7 +70,7 @@ services:
       MARIADB_PASSWORD: "neucore"
 
   neucore:
-    image: tkhamez/neucore:2.2.1
+    image: tkhamez/neucore:2.4.0
     ports:
       - "8080:80"
     environment:

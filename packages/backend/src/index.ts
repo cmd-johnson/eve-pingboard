@@ -12,6 +12,8 @@ async function main() {
     clientId: getFromEnv('SSO_CLIENT_ID'),
     clientSecret: getFromEnv('SSO_CLIENT_SECRET'),
     redirectUri: getFromEnv('SSO_REDIRECT_URI'),
+    accessTokenUri: getOptionalFromEnv('SSO_TOKEN_URI'),
+    authorizationUri: getOptionalFromEnv('SSO_AUTHORIZATION_URI'),
   })
   eveSsoClient.startAutoCleanup()
 
@@ -91,6 +93,12 @@ function getFromEnv(key: string): string {
     throw new Error(`Missing env variable: ${key}`)
   }
   return value
+}
+
+function getOptionalFromEnv(key: string): string | undefined {
+  const value = process.env[key]
+  if (value) return value
+  return undefined
 }
 
 function getNumberFromEnv(key: string, fallback?: number): number {
