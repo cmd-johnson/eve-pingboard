@@ -27,7 +27,10 @@ async function main() {
     cacheTTL: getNumberFromEnv('CORE_GROUP_REFRESH_INTERVAL', 60) * 1000,
   })
 
-  const slackClient = new SlackClient(getFromEnv('SLACK_TOKEN'))
+  const slackClient = new SlackClient(
+    getFromEnv('SLACK_TOKEN'),
+    getOptionalFromEnv('SLACK_API_BASE_URL')
+  )
 
   const sessionTimeout = getNumberFromEnv('SESSION_TIMEOUT', 7 * 24 * 60 * 60) * 1000
   const sessionRefreshInterval = getNumberFromEnv('SESSION_REFRESH_INTERVAL', 60) * 1000

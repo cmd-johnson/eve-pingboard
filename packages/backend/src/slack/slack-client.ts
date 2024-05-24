@@ -17,9 +17,10 @@ export class SlackRequestFailedError extends Error {
 export class SlackClient {
   private client: WebClient
 
-  constructor(token: string) {
+  constructor(token: string, apiBaseUrl?: string) {
     this.client = new WebClient(token, {
       logLevel: LogLevel.DEBUG,
+      slackApiUrl: apiBaseUrl,
     })
   }
 

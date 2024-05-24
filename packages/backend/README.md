@@ -90,6 +90,9 @@ As obtained via https://api.slack.com/apps
 ```sh
 # The Slack App's Bot User OAuth Token (starts with xoxb-)
 SLACK_TOKEN
+
+# The base URL of Slack's API (defaults to https://slack.com/api/)
+#SLACK_API_BASE_URL
 ```
 
 ### Neucore configuration
